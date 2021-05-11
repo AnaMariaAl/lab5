@@ -2,22 +2,19 @@ const updateForm = document.querySelector("#update-form");
 
 const postFormChilds = Array.from(updateForm.children);
 const inputs = postFormChilds.filter((el) => el.nodeName === "INPUT");
+console.log(inputs);
 
-const makePost = (e) => {
+const makeCar = (e) => {
   e.preventDefault();
 
-  const authorInput = inputs[0].value;
-  const titleInput = inputs[1].value;
-  const bodyInput = inputs[2].value;
-  const categoryInput = inputs[3].value;
-
-  console.log(categoryInput);
+  const brandInput = inputs[0].value;
+  const modelInput = inputs[1].value;
+  const yearInput = inputs[2].value;
 
   const data = {
-    title: titleInput,
-    body: bodyInput,
-    author: authorInput,
-    category_id: categoryInput,
+    brand: brandInput,
+    model: modelInput,
+    year: yearInput,
   };
 
   console.log(JSON.stringify(data));
@@ -33,4 +30,4 @@ const makePost = (e) => {
     .catch((err) => console.log(err));
 };
 
-updateForm.addEventListener("submit", (e) => makePost(e));
+updateForm.addEventListener("submit", (e) => makeCar(e));

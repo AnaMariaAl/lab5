@@ -1,14 +1,14 @@
 <?php
 
-class Post
+class Car
 {
   private $conn;
 
   public $id;
-  public $title;
-  public $body;
-  public $author;
-  public $category_id;
+  public $brand;
+  public $model;
+  public $year;
+  
 
 
   // Constructor with DB
@@ -19,7 +19,7 @@ class Post
 
   public function read()
   {
-    $query = 'SELECT * FROM  posts';
+    $query = 'SELECT * FROM  cars';
 
     //Prepare statement
     $stmt = $this->conn->prepare($query);
@@ -32,7 +32,7 @@ class Post
 
   public function read_single()
   {
-    $query = 'SELECT * FROM posts WHERE id = :id';
+    $query = 'SELECT * FROM cars WHERE id = :id';
 
     $stmt = $this->conn->prepare($query);
 
@@ -45,23 +45,23 @@ class Post
     //return array indexed by col name
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $this->title = $row['title'];
-    $this->body = $row['body'];
-    $this->author = $row['author'];
-    $this->category_id = $row['category_id'];
+    $this->model = $row['model'];
+    $this->brand = $row['brand'];
+    $this->year = $row['year'];
+   
   }
 
   public function create()
   {
-    $query = 'INSERT INTO posts 
-    SET title = :title, author = :author, body = :body, category_id = :category_id';
+    $query = 'INSERT INTO cars 
+    SET brand = :brand, year = :year, model = :model';
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(':title', $this->title);
-    $stmt->bindParam(':author', $this->author);
-    $stmt->bindParam(':body', $this->body);
-    $stmt->bindParam(':category_id', $this->category_id);
+    $stmt->bindParam(':model', $this->model);
+    $stmt->bindParam(':brand', $this->brand);
+    $stmt->bindParam(':year', $this->year);
+    
 
     if ($stmt->execute()) {
       return true;
@@ -75,15 +75,15 @@ class Post
 
   public function update()
   {
-    $query = 'UPDATE posts 
-    SET title = :title, author = :author, body = :body, category_id = :category_id WHERE author = :author';
+    $query = 'UPDATE cars 
+    SET brand = :brand, year = :year, model = :model WHERE brand = :brand';
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(':title', $this->title);
-    $stmt->bindParam(':author', $this->author);
-    $stmt->bindParam(':body', $this->body);
-    $stmt->bindParam(':category_id', $this->category_id);
+    $stmt->bindParam(':model', $this->model);
+    $stmt->bindParam(':brand', $this->brand);
+    $stmt->bindParam(':year', $this->year);
+    
 
     if ($stmt->execute()) {
       return true;
@@ -96,7 +96,7 @@ class Post
 
   public function delete()
   {
-    $query = 'DELETE FROM posts WHERE id = :id';
+    $query = 'DELETE FROM cars WHERE id = :id';
 
     $stmt = $this->conn->prepare($query);
 

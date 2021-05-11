@@ -16,7 +16,7 @@
 
   <body>
     <div class="container">
-      <h1 class="title">GET all posts</h1>
+      <h1 class="title">Show all cars</h1>
 
       <div class="flex-row">
         <input
@@ -24,7 +24,7 @@
           name="showUsers"
           id='submit-all'
           class="btn btn-primary"
-          value="Show all data from Posts table"
+          value="Show all data from Cars table"
         />
         
       </div>
@@ -33,10 +33,9 @@
         <tbody class="table-body">
         <tr>
           <th>ID</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Body</th>
-          <th>Category ID</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Year</th>
         </tr>
       </tbody>
       </table>
@@ -44,7 +43,7 @@
 
       
     <div class="container">
-      <h1 class="title">GET one post</h1>
+      <h1 class="title">Show one car</h1>
             <input
               type="text"
               name="showUsers"
@@ -57,27 +56,24 @@
             <tbody class="table-body-one">
             <tr>
               <th>ID</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Body</th>
-              <th>Category ID</th>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>Year</th>
             </tr>
           </tbody>
           </table>
     </div>
 
     <div class="container">
-      <h1 class="title">Create a post</h1>
+      <h1 class="title">Add a car </h1>
       <form class="form" id='post-form'>
-        <input type="text" class="form-control" name='Title' placeholder="Title">
+        <input type="text" class="form-control" name='Brand' placeholder="Brand">
         <br>
-        <input type="text" class="form-control" name='Body' placeholder="Body">
+        <input type="text" class="form-control" name='Model' placeholder="Model">
         <br>
-        <input type="text" class="form-control" name='Author' placeholder="Author">
+        <input type="text" class="form-control" name='Year' placeholder="Year">
         <br>
-        <input type="text" class="form-control" name='Category ID' placeholder="Category ID" maxlength="1">
-        <br>
-        <button type='submit' name='submit' id='submit-post' class="btn btn-warning">Create</button>
+        <button type='submit' name='submit' id='submit-post' class="btn btn-warning">Add</button>
       </form>
     </div>
 

@@ -4,25 +4,24 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 include_once '../../config/Database.php';
-include_once '../../models/Post.php';
+include_once '../../models/Car.php';
 
 $database = new Database();
 $db = $database->connect();
 
-$post = new Post($db);
+$car = new Car($db);
 
-$post->id = isset($_GET['id']) ? $_GET['id'] : die();
+$car->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-// get single post
-$post->read_single();
+// get single car
+$car->read_single();
 
 // create array
-$post_arr = array(
-  'id' => $post->id,
-  'title' => $post->title,
-  'body' => $post->body,
-  'author' => $post->author,
-  'category_id' => $post->category_id,
+$car_arr = array(
+  'id' => $car->id,
+  'brand' => $car->brand,
+  'model' => $car->model,
+  'year' => $car->year,
 );
 
-print_r(json_encode($post_arr));
+print_r(json_encode($car_arr));

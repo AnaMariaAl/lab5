@@ -5,38 +5,37 @@ header("Access-Control-Allow-Origin: 'no-cors'"); // make the api public
 header('Content-Type: application/json');
 
 include_once '../../config/Database.php';
-include_once '../../models/Post.php';
+include_once '../../models/Car.php';
 
 $database = new Database();
 $db = $database->connect();
 
-$post = new Post($db);
+$car = new Car($db);
 
-$result = $post->read();
+$result = $car->read();
 
 //get row count
 $num = $result->rowCount();
 
-// Check if any post
+// Check if any cars
 if ($num > 0) {
 
-  $posts_arr = array();
+  $cars_arr = array();
 
   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-    $post_item = array(
+    $car_item = array(
       'id' => $row['id'],
-      'title' => $row['title'],
-      'body' => $row['body'],
-      'author' => $row['author'],
-      'category_id' => $row['category_id']
+      'brand' => $row['brand'],
+      'model' => $row['model'],
+      'year' => $row['year'],
     );
 
-    array_push($posts_arr, $post_item);
+    array_push($cars_arr, $car_item);
   }
 
   // Turn it into json & output
-  echo json_encode($posts_arr);
+  echo json_encode($cars_arr);
 } else {
-  echo json_encode('no post found');
+  echo json_encode('no cars found');
 }

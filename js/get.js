@@ -3,7 +3,7 @@ const deleteBtn = document.getElementById("delete-all");
 const table = document.querySelector(".table-body");
 
 let data = [];
-const fetchPosts = () => {
+const fetchCars = () => {
   fetch("http://localhost/lab5/api/post/read.php")
     .then((res) => res.json())
     .then((res) => {
@@ -13,30 +13,28 @@ const fetchPosts = () => {
       return res;
     })
     .then((res) => {
-      data.map((post) => {
+      data.map((car) => {
         let row = document.createElement("tr");
         row.classList.add("table-rows");
 
         let id = document.createElement("td");
-        let title = document.createElement("td");
-        let author = document.createElement("td");
-        let body = document.createElement("td");
-        let category = document.createElement("td");
+        let brand = document.createElement("td");
+        let model = document.createElement("td");
+        let year = document.createElement("td");
 
-        id.innerHTML = `${post.id}`;
-        title.innerHTML = `${post.title}`;
-        author.innerHTML = `${post.author}`;
-        body.innerHTML = `${post.body}`;
-        category.innerHTML = `${post.category_id}`;
+        id.innerHTML = `${car.id}`;
+        brand.innerHTML = `${car.brand}`;
+        model.innerHTML = `${car.model}`;
+        year.innerHTML = `${car.year}`;
 
-        row.append(id, title, author, body, category);
+        row.append(id, brand, model, year);
         table.appendChild(row);
       });
     })
     .catch((err) => console.log(err));
 };
 
-const deletePosts = () => {
+const deleteCars = () => {
   const tableChilds = Array.from(table.children);
   console.log(tableChilds);
 
@@ -47,5 +45,5 @@ const deletePosts = () => {
   });
 };
 
-submit.addEventListener("click", fetchPosts);
-deleteBtn.addEventListener("click", deletePosts);
+submit.addEventListener("click", fetchCars);
+deleteBtn.addEventListener("click", deleteCars);
